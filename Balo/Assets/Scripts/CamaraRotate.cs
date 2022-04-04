@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // 사용자가 마우스를 움직이면 카메라를 회전하고 싶다.
+// Y축의 회전값을 미니맵 아이콘에도 적용하고 싶다. 
 public class CamaraRotate : MonoBehaviour
 {
-    public float rotSpeed = 300f;   // 마우스 변화량이 매우 작기 때문에 증폭을 위한 변수
     float rx;
     float ry;
+    public float rotSpeed = 300f;   // 마우스 변화량이 매우 작기 때문에 증폭을 위한 변수
+    public Transform minimap;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,5 +41,7 @@ public class CamaraRotate : MonoBehaviour
 
         //Quaternion q = Quaternion.Euler(0, 10, 0);
         //transform.rotation *= transform.rotation * q;
+
+        minimap.eulerAngles = new Vector3(90, ry, 0);
     }
 }

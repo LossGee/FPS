@@ -168,6 +168,11 @@ public class Enemy : MonoBehaviour
     {
         enemyHP.HP -= damageValue;
         agent.isStopped = true;        // agent.isStopped (true: 멈춤 / false: 이동)
+
+        if (state == State.React || state == State.Death)
+        {
+            return;
+        }
         if (enemyHP.HP <= 0)
         {
             // 죽음...
@@ -216,5 +221,7 @@ public class Enemy : MonoBehaviour
     {
         // 죽음 애니메이션이 종료되는 순간 스스로 파괴되고 싶다.
         Destroy(gameObject);
+
+        LevelManager.Instance.KillCount++;
     }
 }
